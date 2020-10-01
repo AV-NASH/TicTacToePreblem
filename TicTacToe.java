@@ -8,19 +8,21 @@ import java.util.Scanner;
  */
 public class TicTacToe {
 
+	static Scanner scanner = new Scanner(System.in);
+
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to the tic tac toe problem");
 
 		char[] tictactoeboard = initializeBoard();
-		char playerletter=chooseLetter();
-		char computerletter;
-		if(playerletter=='X') { 
-			 computerletter='O';
-			}
-		else {
-			 computerletter='X';
-			}
+		char userchoice = chooseLetter();
+		char computerchoice;
+		if (userchoice == 'X') {
+			computerchoice = 'O';
+		} else {
+			computerchoice = 'X';
+		}
+		scanner.close();
 	}
 
 	/**
@@ -40,22 +42,25 @@ public class TicTacToe {
 	 * method to allow player to choose letter
 	 */
 	public static char chooseLetter() {
-		Scanner sc = new Scanner(System.in);
-		char playerletter=' ';
-		System.out.println("Please choose a letter");
-		System.out.println("1. X");
-		System.out.println("2. O");
-		String str = sc.nextLine();
-		char choice=str.charAt(0);
 
-		switch (choice) {
-			case 1: {
-				playerletter = 'X';
-			}
-			case 2: {
-				playerletter = 'O';
-			}
+		char userchoice = ' ';
+		System.out.println("Please choose a letter\n" + "1. X\n" + "2. O");
+		String str = scanner.nextLine();
+		char choice = str.charAt(0);
+
+		switch (Character.toLowerCase(choice)) {
+		case 'x': {
+			userchoice = 'X';
+			break;
 		}
-		return playerletter;
+		case 'o': {
+			userchoice = 'O';
+			break;
+		}
+		default: {
+			System.out.println("Enter a valid characteraner");
+		}
+		}
+		return userchoice;
 	}
 }
