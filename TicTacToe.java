@@ -15,9 +15,13 @@ public class TicTacToe {
 		System.out.println("Welcome to the tic tac toe problem");
 
 		char[] tictactoeboard = initializeBoard();
+		int index;
 		char userchoice = chooseLetter();
 		char computerchoice;
 		computerchoice = (userchoice == 'X') ? (computerchoice = 'O') : (computerchoice = 'X');
+		showBoard(tictactoeboard);
+		index = selectIndex(tictactoeboard);
+		tictactoeboard[index] = userchoice;
 		showBoard(tictactoeboard);
 		scanner.close();
 	}
@@ -61,11 +65,36 @@ public class TicTacToe {
 		return userchoice;
 	}
 
+	/**
+	 * Method for showing board
+	 */
 	private static void showBoard(char[] tictactoeboard) {
-		 {
-			System.out.println(tictactoeboard[1] + " | " + tictactoeboard[2] + " | " + tictactoeboard[3]+"\n-----------");
-			System.out.println(tictactoeboard[1] + " | " + tictactoeboard[2] + " | " + tictactoeboard[3]+"\n-----------");
-			System.out.println(tictactoeboard[1] + " | " + tictactoeboard[2] + " | " + tictactoeboard[3]+"\n-----------");
+		{
+			System.out.println(
+					tictactoeboard[1] + " | " + tictactoeboard[2] + " | " + tictactoeboard[3] + "\n-----------");
+			System.out.println(
+					tictactoeboard[4] + " | " + tictactoeboard[5] + " | " + tictactoeboard[6] + "\n-----------");
+			System.out.println(
+					tictactoeboard[7] + " | " + tictactoeboard[8] + " | " + tictactoeboard[9] + "\n-----------");
 		}
 	}
+
+	/**
+	 * Method for taking index from user
+	 */
+	private static int selectIndex(char[] tictactoeboard) {
+		int index;
+		int valid = 0;
+		do {
+			System.out.println("Please select index from positions 1-9");
+			index = scanner.nextInt();
+			if (tictactoeboard[index] == ' ')
+				break;
+			else
+				System.out.println("this index is not free please select a valid one");
+		} while (!(tictactoeboard[index] == ' '));
+
+		return index;
+	}
+
 }
