@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class TicTacToe {
 
 	static Scanner scanner = new Scanner(System.in);
+	private static String user = "user";
+	private static String computer = "computer";
 
 	public static void main(String[] args) {
 
@@ -20,10 +22,13 @@ public class TicTacToe {
 		char computerchoice;
 		computerchoice = (userchoice == 'X') ? (computerchoice = 'O') : (computerchoice = 'X');
 		showBoard(tictactoeboard);
+		if(firstPlayCheck().equals(user)) System.out.println("user plays first");
+		else System.out.println("computer plays first");
 		index = selectIndex(tictactoeboard);
 		moveBoard(index, tictactoeboard, userchoice);
 		index = selectIndex(tictactoeboard);
 		moveBoard(index, tictactoeboard, userchoice);
+		
 		scanner.close();
 	}
 
@@ -109,6 +114,11 @@ public class TicTacToe {
 		tictactoeboard[index] = letter;
 		showBoard(tictactoeboard);
 		return tictactoeboard;
+	}
+
+	private static String firstPlayCheck() {
+		int toss = (int) (Math.random() * 10) % 2;
+		return (toss == 0) ? (user) : (computer);
 	}
 
 }
