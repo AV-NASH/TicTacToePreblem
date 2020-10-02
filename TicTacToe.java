@@ -39,7 +39,7 @@ public class TicTacToe {
 				check = checkWinAndTie(tictactoeboard, userchoice);
 				turn = computer;
 			} else {
-				index = checkWinningMove(tictactoeboard, computerchoice);
+				index = computerTurn(tictactoeboard, computerchoice, userchoice);
 				moveBoard(index, tictactoeboard, computerchoice);
 				showBoard(tictactoeboard);
 				check = checkWinAndTie(tictactoeboard, computerchoice);
@@ -157,6 +157,14 @@ public class TicTacToe {
 
 		}
 		return check;
+	}
+
+	private static int computerTurn(char[] tictactoeboard, char computerchoice, char userchoice) {
+		int index = 0;
+		index = checkWinningMove(tictactoeboard, computerchoice);
+		if (index == 0)
+			index = checkWinningMove(tictactoeboard, userchoice);
+		return index;
 	}
 
 	private static int checkWinningMove(char[] tictactoeboard, char letter) {
