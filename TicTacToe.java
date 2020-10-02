@@ -36,13 +36,14 @@ public class TicTacToe {
 				index = selectIndex(tictactoeboard);
 				moveBoard(index, tictactoeboard, userchoice);
 				showBoard(tictactoeboard);
-				check = checkWinAndTie(tictactoeboard, userchoice);
+				check = checkWinAndTie(tictactoeboard, userchoice,user);
 				turn = computer;
 			} else {
+				System.out.println("Now computer makes its move...\n");
 				index = computerTurn(tictactoeboard, computerchoice, userchoice);
 				moveBoard(index, tictactoeboard, computerchoice);
 				showBoard(tictactoeboard);
-				check = checkWinAndTie(tictactoeboard, computerchoice);
+				check = checkWinAndTie(tictactoeboard, computerchoice,computer);
 				turn = user;
 			}
 		} while (!check);
@@ -73,7 +74,7 @@ public class TicTacToe {
 			System.out.println(
 					tictactoeboard[4] + " | " + tictactoeboard[5] + " | " + tictactoeboard[6] + "\n-----------");
 			System.out.println(
-					tictactoeboard[7] + " | " + tictactoeboard[8] + " | " + tictactoeboard[9] + "\n-----------");
+					tictactoeboard[7] + " | " + tictactoeboard[8] + " | " + tictactoeboard[9] + "\n-----------" + "\n");
 		}
 	}
 
@@ -137,7 +138,7 @@ public class TicTacToe {
 		return (toss == 0) ? (user) : (computer);
 	}
 
-	private static boolean checkWinAndTie(char[] b, char letter) {
+	private static boolean checkWinAndTie(char[] b, char letter, String player) {
 		boolean check;
 		if ((b[1] == letter && b[2] == letter && b[3] == letter) || (b[4] == letter && b[5] == letter && b[6] == letter)
 				|| (b[7] == letter && b[8] == letter && b[9] == letter)
@@ -146,6 +147,8 @@ public class TicTacToe {
 				|| (b[3] == letter && b[6] == letter && b[9] == letter)
 				|| (b[1] == letter && b[5] == letter && b[9] == letter)
 				|| (b[3] == letter && b[5] == letter && b[7] == letter)) {
+			if(player.equals(user)) System.out.println("Congratulations!!! You have won!!!");
+			else System.out.println("Too bad, you have lost the game. Better Luck next time");
 			check = true;
 		} else {
 			int valid = 0;
@@ -154,6 +157,8 @@ public class TicTacToe {
 					valid++;
 			}
 			check = (valid == 9) ? (true) : (false);
+			if (check)
+				System.out.println("Game ended in a Tie. Good game!!!!");
 		}
 		return check;
 	}
