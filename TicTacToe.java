@@ -164,6 +164,7 @@ public class TicTacToe {
 		index = checkWinningMove(tictactoeboard, computerchoice);
 		if (index == 0)
 			index = checkWinningMove(tictactoeboard, userchoice);
+		if(index==0) index=checkcorner(tictactoeboard, computerchoice);
 		return index;
 	}
 
@@ -202,6 +203,15 @@ public class TicTacToe {
 			}
 
 		}
+		return index;
+	}
+	
+	private static int checkcorner(char[]tictactoeboard,char computerchoice) {
+		int index=0;
+		if(tictactoeboard[1]==' ') index=1;
+		if(tictactoeboard[3]==' ') index=3;
+		if(tictactoeboard[7]==' ') index=7;
+		if(tictactoeboard[9]==' ') index=9;
 		return index;
 	}
 
