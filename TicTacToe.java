@@ -150,11 +150,10 @@ public class TicTacToe {
 		} else {
 			int valid = 0;
 			for (int index = 1; index < b.length; index++) {
-				if (b[index] == ' ')
+				if (!(b[index] == ' '))
 					valid++;
 			}
 			check = (valid == 9) ? (true) : (false);
-
 		}
 		return check;
 	}
@@ -164,7 +163,10 @@ public class TicTacToe {
 		index = checkWinningMove(tictactoeboard, computerchoice);
 		if (index == 0)
 			index = checkWinningMove(tictactoeboard, userchoice);
-		if(index==0) index=checkcorner(tictactoeboard, computerchoice);
+		if (index == 0)
+			index = checkcorner(tictactoeboard, computerchoice);
+		if (index == 0)
+			index = checkCenterAndSides(tictactoeboard, computerchoice);
 		return index;
 	}
 
@@ -178,7 +180,7 @@ public class TicTacToe {
 		if (index == 0)
 			index = checkWinningLine(1, 4, 7, tictactoeboard, letter);
 		if (index == 0)
-			index = checkWinningLine(2, 5, 6, tictactoeboard, letter);
+			index = checkWinningLine(2, 5, 8, tictactoeboard, letter);
 		if (index == 0)
 			index = checkWinningLine(3, 6, 9, tictactoeboard, letter);
 		if (index == 0)
@@ -205,13 +207,35 @@ public class TicTacToe {
 		}
 		return index;
 	}
-	
-	private static int checkcorner(char[]tictactoeboard,char computerchoice) {
-		int index=0;
-		if(tictactoeboard[1]==' ') index=1;
-		if(tictactoeboard[3]==' ') index=3;
-		if(tictactoeboard[7]==' ') index=7;
-		if(tictactoeboard[9]==' ') index=9;
+
+	private static int checkcorner(char[] tictactoeboard, char computerchoice) {
+		int index = 0;
+		if (tictactoeboard[1] == ' ')
+			index = 1;
+		if (tictactoeboard[3] == ' ')
+			index = 3;
+		if (tictactoeboard[7] == ' ')
+			index = 7;
+		if (tictactoeboard[9] == ' ')
+			index = 9;
+		return index;
+	}
+
+	private static int checkCenterAndSides(char[] tictactoeboard, char computerchoice) {
+		int index = 0;
+		if (tictactoeboard[5] == ' ')
+			index = 5;
+		else {
+			if (tictactoeboard[2] == ' ')
+				index = 2;
+			if (tictactoeboard[4] == ' ')
+				index = 4;
+			if (tictactoeboard[6] == ' ')
+				index = 6;
+			if (tictactoeboard[8] == ' ')
+				index = 8;
+		}
+
 		return index;
 	}
 
