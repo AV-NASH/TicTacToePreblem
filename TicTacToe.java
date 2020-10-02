@@ -38,13 +38,12 @@ public class TicTacToe {
 				showBoard(tictactoeboard);
 				check = checkWinAndTie(tictactoeboard, userchoice);
 				turn = computer;
-			} 
-			else {
-				index = 9;
-			tictactoeboard[index] = computerchoice;
-			showBoard(tictactoeboard);
-			check = checkWinAndTie(tictactoeboard, computerchoice);
-			turn = user;
+			} else {
+				index = checkWinningMove(tictactoeboard, computerchoice);
+				moveBoard(index, tictactoeboard, computerchoice);
+				showBoard(tictactoeboard);
+				check = checkWinAndTie(tictactoeboard, computerchoice);
+				turn = user;
 			}
 		} while (!check);
 
@@ -158,6 +157,44 @@ public class TicTacToe {
 
 		}
 		return check;
+	}
+
+	private static int checkWinningMove(char[] tictactoeboard, char letter) {
+		int index;
+		index = checkWinningLine(1, 2, 3, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(4, 5, 6, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(7, 8, 9, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(1, 4, 7, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(2, 5, 6, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(3, 6, 9, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(1, 5, 9, tictactoeboard, letter);
+		if (index == 0)
+			index = checkWinningLine(3, 5, 7, tictactoeboard, letter);
+		return index;
+	}
+
+	private static int checkWinningLine(int i1, int i2, int i3, char[] b, char letter) {
+		int index = 0;
+		if ((b[i1] == letter && b[i2] == letter) || (b[i2] == letter && b[i3] == letter)
+				|| (b[i1] == letter && b[i3] == letter)) {
+
+			if ((b[i1] == ' ') || (b[i2] == ' ') || (b[i3] == ' ')) {
+				if ((b[i1] == ' '))
+					index = i1;
+				if ((b[i2] == ' '))
+					index = i2;
+				if ((b[i3] == ' '))
+					index = i3;
+			}
+
+		}
+		return index;
 	}
 
 }
