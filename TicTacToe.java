@@ -15,6 +15,11 @@ public class TicTacToe {
 	public static void main(String[] args) {
 
 		System.out.println("Welcome to the tic tac toe problem");
+		userInterface();
+		scanner.close();
+	}
+
+	private static void userInterface() {
 		int index;
 		String turn;
 		boolean check = true;
@@ -54,8 +59,6 @@ public class TicTacToe {
 			scanner.nextLine();
 		} while (choice == 1);
 		System.out.println("Thank you for playing...");
-
-		scanner.close();
 	}
 
 	/**
